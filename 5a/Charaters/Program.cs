@@ -19,6 +19,7 @@ namespace Charaters
             Ascii(c);
             IsUpperOrLowerCase(c);
             ChangeToUpper(c);
+            ChangeToLower(c);
         }
         static void PrintAtoZ()
         {
@@ -90,6 +91,18 @@ namespace Charaters
                 Console.WriteLine("the character you give is Not in letter characters ");
             Console.WriteLine("Here is UPPER charater you want: {0} ", c);
         }
-
+        static void ChangeToLower(char c)
+        {
+            
+            if ((c >= 'A' && c <= 'Z'))
+            {
+                c = (char)(c - 'A' + 'a');
+            }
+            else if ((c >= 'a' && c <= 'z'))
+                c= c;
+            else
+                Console.WriteLine("the character you give is Not in letter characters ");
+            Console.WriteLine("Here is Lower charater you want: {0} ", c);
+        }
     }
 }
