@@ -18,8 +18,9 @@ namespace _5b
             //int[] array = new int[n];
             //InputInt(x , array);
             //FindMaxMin(array);
-            String Nhap = Convert.ToString(Console.ReadLine());
-            Console.WriteLine("this is the result when processed: {0}", ChangeToUpperOrLowerCase(Nhap)); 
+            //String Nhap = Convert.ToString(Console.ReadLine());
+            //Console.WriteLine("this is the result when processed: {0}", ChangeToUpperOrLowerCase(Nhap)); 
+            Draw(20);
          
         }
         static bool Palindrome(String input)
@@ -92,6 +93,34 @@ namespace _5b
                     output += input[i];
             }
             return output;
+        }
+        static void Draw(int h)
+        {
+            char[,] cArr = new char[h, h];
+            for (int i = 0; i < h; i++)
+            {  
+                    cArr[i, i] = 'x';
+                    cArr[i, h - 1 - i] = 'x';                
+                for (int j = 0; j < h; j++)
+                {
+                    if((i == 0 || i == h - 1) && (j == 0 || j == h - 1)  )
+                    { cArr[i, j] = '+'; }
+                    if ((i == 0 || i == h - 1) && (j != 0 && j != h -1))
+                        cArr[i, j] = '-';
+                    if ((j == 0 || j == h - 1) && (i != 0 && i != h -1))
+                        cArr[i, j] = '|';
+                }
+            }
+            
+
+            for (int i = 0; i < h; i++)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    Console.Write(cArr[i,j]);
+                }
+                Console.WriteLine();
+            }
         }
      
     }
