@@ -12,12 +12,14 @@ namespace _5b
         {
             //String input = Convert.ToString(Console.ReadLine());
             //IssueB1(input);
-            Console.Write("please enter value of x: ");
-            String[] x = Console.ReadLine().Split(' ');
-            int n = x.Length;
-            int[] array = new int[n];
-            InputInt(x , array);
-            FindMaxMin(array);
+            //Console.Write("please enter value of x: ");
+            //String[] x = Console.ReadLine().Split(' ');
+            //int n = x.Length;
+            //int[] array = new int[n];
+            //InputInt(x , array);
+            //FindMaxMin(array);
+            String Nhap = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("this is the result when processed: {0}", ChangeToUpperOrLowerCase(Nhap)); 
          
         }
         static bool Palindrome(String input)
@@ -75,7 +77,22 @@ namespace _5b
             Console.WriteLine("the Max number is {0}" ,Max(a));
             Console.WriteLine("the Min number is {0}", Min(a));
         }
-
+        static String ChangeToUpperOrLowerCase(String input)
+        {
+            String output = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] >= 'a' && input[i] <= 'z')
+                {
+                    output += (char)(input[i] - 'a' + 'A');
+                }
+                else if (input[i] >= 'A' && input[i] <= 'Z')
+                    output += (char)(input[i] - 'A' + 'a');
+                else
+                    output += input[i];
+            }
+            return output;
+        }
      
     }
 }
