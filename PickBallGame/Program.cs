@@ -11,7 +11,8 @@ namespace PickBallGame
     {
         static void Main(string[] args)
         {
-            int[] game = new int[] { 0, 3, 4, 6 };
+            int[] game = new int[] { 0, 3, 5, 6 };
+
             PrintGame(game);
             while (true)
             {
@@ -22,17 +23,17 @@ namespace PickBallGame
                     Console.WriteLine("You Lose!!!");
                     break;
                 }
-                Console.WriteLine("Wait a minute..... ");
+                Console.WriteLine("Computer turn:  ");
                 ComputerMove(game);
                 PrintGame(game);
-                if(Has0Ball(game))
+                if (Has0Ball(game))
                 {
                     Console.WriteLine("You Win!!!");
                     break;
                 }
             }
-            
-            
+
+
         }
         static void HumanMove(int[] game)
         {
@@ -44,17 +45,17 @@ namespace PickBallGame
         }
         static void ComputerMove(int[] game)
         {
-            if(Has1Group(game))
+            if (Has1Group(game))
             {
                 int g = 0;
                 Get1Group(game, out g);
-                if(game[g] > 1)
+                if (game[g] > 1)
                     PickBall(game, g, game[g] - 1);
                 else
-                    PickBall(game , g , 1);
+                    PickBall(game, g, 1);
 
             }
-            else if(Has2Group(game))
+            else if (Has2Group(game))
             {
                 Random rand = new Random();
                 int a, b = 0;
@@ -74,8 +75,8 @@ namespace PickBallGame
                     else
                         PickBall(game, a, 1);
                 }
-                    
-                    
+
+
 
 
             }
@@ -84,6 +85,9 @@ namespace PickBallGame
                 Random rand = new Random();
                 int g = rand.Next(1, 3);
                 int balls = rand.Next(1, game[g]);
+
+                int gr = 0;
+                FindMax(game, out gr);
 
                 if (game[1] > 1 && game[2] == 1 && game[3] == 1)
                     PickBall(game, 1, game[1] - 1);
@@ -119,7 +123,7 @@ namespace PickBallGame
                         PickBall(game, 1, game[1]);
                 }
                 else
-                    //PickBall(game, g, balls);
+                //PickBall(game, g, balls);
                 {
                     if (game[1] == game[2])
                         PickBall(game, 3, game[3]);
@@ -127,17 +131,14 @@ namespace PickBallGame
                         PickBall(game, 2, game[2]);
                     else if (game[3] == game[2])
                         PickBall(game, 1, game[1]);
-                    else if(game[1] != game[2] && game[1] != game[3] && game[2] != game[3])
+                    else if (game[1] != game[2] && game[1] != game[3] && game[3] != game[2])
                     {
-                        int m = 0;
-                        int gr = 0;
-                        FindMax(game,out gr,out m);
-                        PickBall(game, gr, game[m - 1]);  
+                        PickBall(game, gr, game[gr] - 1);
                     }
-                       
+
                 }
             }
-            
+
         }
         static void PrintGame(int[] group)
         {
@@ -162,9 +163,9 @@ namespace PickBallGame
             }
             Console.WriteLine();
         }
-        static void PickBall(int[] group , int g , int n)
+        static void PickBall(int[] group, int g, int n)
         {
-            group[g] -= n ;
+            group[g] -= n;
         }
         static bool Has0Ball(int[] group)
         {
@@ -180,7 +181,7 @@ namespace PickBallGame
                 return true;
             return false;
         }
-        static bool Has2Group(int[] group )
+        static bool Has2Group(int[] group)
         {
             if (group[1] > 0 && group[2] > 0 && group[3] == 0)
                 return true;
@@ -195,7 +196,7 @@ namespace PickBallGame
 
             return (group[1] > 0 && group[2] > 0 && group[3] > 0);
         }
-        static void Get1Group(int[] group , out int g)
+        static void Get1Group(int[] group, out int g)
         {
             g = 0;
             if (group[1] > 0 && group[2] == 0 && group[3] == 0)
@@ -204,9 +205,9 @@ namespace PickBallGame
                 g = 2;
             if (group[1] == 0 && group[2] == 0 && group[3] > 0)
                 g = 3;
-            
+
         }
-        static void Get2Group(int[] group , out int a ,out int b)
+        static void Get2Group(int[] group, out int a, out int b)
         {
             a = b = 0;
             if (group[1] > 0 && group[2] > 0 && group[3] == 0)
@@ -217,23 +218,24 @@ namespace PickBallGame
             { a = 2; b = 3; }
 
         }
-        static void FindMax(int[] game,out int g , out int  max)
+        static void FindMax(int[] game, out int g)
         {
             g = 0;
-            max = game[g];
-            for (int i = 0; i < game.Length-1; i++)
+            int max = game[g];
+
+            for (int i = 1; i < game.Length; i++)
             {
                 if (max < game[i])
                 {
                     g = i;
-                    max = game[i];
-                    
+
                 }
             }
-            Console.WriteLine(g + max);
+
+
 
         }
     }
 
- }
+}
 
