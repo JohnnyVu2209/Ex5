@@ -127,8 +127,14 @@ namespace PickBallGame
                         PickBall(game, 2, game[2]);
                     else if (game[3] == game[2])
                         PickBall(game, 1, game[1]);
-                    else
-                        PickBall(game, g, balls);
+                    else if(game[1] != game[2] && game[1] != game[3] && game[2] != game[3])
+                    {
+                        int m = 0;
+                        int gr = 0;
+                        FindMax(game,out gr,out m);
+                        PickBall(game, gr, game[m - 1]);  
+                    }
+                       
                 }
             }
             
@@ -209,6 +215,22 @@ namespace PickBallGame
             { a = 1; b = 3; }
             if (group[1] == 0 && group[2] > 0 && group[3] > 0)
             { a = 2; b = 3; }
+
+        }
+        static void FindMax(int[] game,out int g , out int  max)
+        {
+            g = 0;
+            max = game[g];
+            for (int i = 0; i < game.Length-1; i++)
+            {
+                if (max < game[i])
+                {
+                    g = i;
+                    max = game[i];
+                    
+                }
+            }
+            Console.WriteLine(g + max);
 
         }
     }
