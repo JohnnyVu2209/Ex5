@@ -56,6 +56,7 @@ namespace PickBallGame
             }
             else if(Has2Group(game))
             {
+                Random rand = new Random();
                 int a, b = 0;
                 Get2Group(game, out a, out b);
                 if (game[a] == 1)
@@ -67,7 +68,16 @@ namespace PickBallGame
                 else if (game[b] > game[a])
                     PickBall(game, b, game[b] - game[a]);
                 else
-                    PickBall(game , a ,1);
+                {
+                    if (a == 3 && b == 3)
+                    { PickBall(game, a, game[rand.Next(1, 2)]); }
+                    else
+                        PickBall(game, a, 1);
+                }
+                    
+                    
+
+
             }
             else
             {
@@ -81,9 +91,37 @@ namespace PickBallGame
                     PickBall(game, 2, game[2] - 1);
                 else if (game[1] == 1 && game[2] == 1 && game[3] > 1)
                     PickBall(game, 3, game[3] - 1);
+                else if (game[1] > 1 && game[2] > 1 && game[3] == 1)
+                {
+                    if (game[1] > game[2])
+                        PickBall(game, 1, game[1] - 2);
+                    else if (game[1] < game[2])
+                        PickBall(game, 2, game[2] - 2);
+                    else
+                        PickBall(game, 3, game[3]);
+                }
+                else if (game[1] > 1 && game[2] == 1 && game[3] > 1)
+                {
+                    if (game[1] > game[3])
+                        PickBall(game, 1, game[1] - 2);
+                    else if (game[1] < game[3])
+                        PickBall(game, 3, game[3] - 2);
+                    else
+                        PickBall(game, 2, game[2]);
+                }
+                else if (game[1] == 1 && game[2] > 1 && game[3] > 1)
+                {
+                    if (game[2] > game[3])
+                        PickBall(game, 2, game[2] - 2);
+                    else if (game[2] < game[3])
+                        PickBall(game, 3, game[3] - 2);
+                    else
+                        PickBall(game, 1, game[1]);
+                }
                 else
                     PickBall(game, g, balls);
             }
+            
         }
         static void PrintGame(int[] group)
         {
