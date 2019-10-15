@@ -119,7 +119,17 @@ namespace PickBallGame
                         PickBall(game, 1, game[1]);
                 }
                 else
-                    PickBall(game, g, balls);
+                    //PickBall(game, g, balls);
+                {
+                    if (game[1] == game[2])
+                        PickBall(game, 3, game[3]);
+                    else if (game[1] == game[3])
+                        PickBall(game, 2, game[2]);
+                    else if (game[3] == game[2])
+                        PickBall(game, 1, game[1]);
+                    else
+                        PickBall(game, g, balls);
+                }
             }
             
         }
