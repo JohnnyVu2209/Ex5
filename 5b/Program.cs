@@ -50,16 +50,24 @@ namespace _5b
         }
         static bool Palindrome(String input)
         {
-            String palindrome = "";
-            for (int i = input.Length - 1; i >= 0; i--)
+            //String palindrome = "";
+            //for (int i = input.Length - 1; i >= 0; i--)
+            //{
+               // palindrome += input[i];
+            //}
+            //if(palindrome == input)
+            //{
+            //    return true;
+            //}
+            //return false;
+             bool found = true;
+             for(int i = 0;i < inputString.Length;i++)
             {
-                palindrome += input[i];
+                if(inputString[i] != inputString[inputString.Length - 1 - i])
+                    found = false;
             }
-            if(palindrome == input)
-            {
-                return true;
-            }
-            return false;
+            return found;
+            
         }
         static void IssueB1(String input)
         {
